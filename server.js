@@ -1,8 +1,8 @@
-var express       = require('express'),
-    https         = require('https'),
-    sessions      = require('client-sessions'),
-    redis         = require('redis'),
-    fonts         = require('connect-fonts'),
+var express = require('express'),
+    https = require('https'),
+    sessions = require('client-sessions'),
+    redis = require('redis'),
+    fonts = require('connect-fonts'),
     font_sugiyama = require('connect-fonts-drsugiyama');
 
 // create a connection to the redis datastore
@@ -10,7 +10,7 @@ var db = redis.createClient();
 
 db.on("error", function (err) {
   db = null;
-  console.log("redis error!  the server won't actually store anything!  this is just fine for local dev");
+  console.log("redis error! the server won't actually store anything! this is just fine for local dev");
 });
 
 var app = express.createServer(
@@ -123,3 +123,4 @@ app.get('/api/todos/get', checkAuth, function(req, res) {
 app.use(express.static(__dirname + "/static"));
 
 app.listen(process.env['PORT'] || 8080, '0.0.0.0');
+
